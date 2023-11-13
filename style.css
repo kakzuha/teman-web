@@ -1,0 +1,17 @@
+body {
+    background-color: #FCFDF8;
+}
+
+/*padding page login dan register*/
+.pad {
+    padding: 20px;
+}
+/*container login sama register*/
+.cloginter {
+    background-color: #393D6E;
+    border-radius: 30px;
+}
+
+.text1 {
+    color: white;
+}
