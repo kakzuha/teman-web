@@ -1,3 +1,30 @@
+<?php
+include 'koneksi.php';
+session_start();
+
+  if (isset($_SESSION['nama'])) {
+      header("Location: berhasil_login.php");
+      exit();
+  }
+  
+  if (isset($_POST['submit'])) {
+      $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+      $password = hash('sha256', $_POST['password']); // Hash the input password using SHA-256
+  
+      $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+      $result = mysqli_query($koneksi, $sql);
+  
+      if ($result->num_rows > 0) {
+          $row = mysqli_fetch_assoc($result);
+          $_SESSION['nama'] = $row['nama'];
+          header("Location: home.php");
+          exit();
+      } else {
+          echo "<script>alert('Email atau password Anda salah. Silakan coba lagi!')</script>";
+      }
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,13 +50,13 @@
 
         <form>
           <div class="mb-3">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email" required>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="kata sandi">
+            <input type="password" class="form-control" id="password" placeholder="kata sandi" required>
           </div>
           <div class="mb-3">
-            <p class="text1">Belum punya akun? <b><a class="link-light link-offset-2 link-underline-opacity-0" href="#">Daftar Sekarang</a></b></p> 
+            <p class="text1">Belum punya akun? <b><a class="link-light link-offset-2 link-underline-opacity-0" href="register.html  ">Daftar Sekarang</a></b></p> 
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
