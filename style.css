@@ -15,3 +15,18 @@ body {
 .text1 {
     color: white;
 }
+
+#navbar {
+    background-color: #393D6E;
+}
+
+#addtugas {
+    background-color: #393D6E;
+    position: relative;
+    width: 100%;
+
+}
+#navg {
+    background-color: #FCFDF8;
+    color: #393D6E;
+}
